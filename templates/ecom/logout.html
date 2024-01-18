@@ -1,0 +1,33 @@
+{% extends 'ecom/homebase.html' %}
+{% load static %}
+{% block content %}
+
+<div class="slider-area ">
+    <!-- Mobile Menu -->
+    <div class="single-slider slider-height2 d-flex align-items-center" data-background="/static/img/hero/category.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>logout</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- slider Area End-->
+    
+<br><br><br>
+
+
+<center>
+    <h2>You've logged out successfully!</h2>
+    <li class="d-none d-lg-block"><a class="btn header-btn" href="{%url 'home_view'%}">Back To Home</a>
+</center>
+
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br>
+
+{% endblock content %}

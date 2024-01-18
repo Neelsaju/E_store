@@ -1,0 +1,181 @@
+{% extends 'ecom/customer_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+  <style type="text/css">
+.form-style-1 {
+	margin:10px auto;
+	max-width: 400px;
+	padding: 20px 12px 10px 20px;
+	font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.form-style-1 li {
+	padding: 0;
+	display: block;
+	list-style: none;
+	margin: 10px 0 0 0;
+}
+.form-style-1 label{
+	margin:0 0 3px 0;
+	padding:0px;
+	display:block;
+	font-weight: bold;
+}
+.form-style-1 input[type=text],
+.form-style-1 input[type=date],
+.form-style-1 input[type=datetime],
+.form-style-1 input[type=number],
+.form-style-1 input[type=search],
+.form-style-1 input[type=time],
+.form-style-1 input[type=url],
+.form-style-1 input[type=email],
+textarea,
+select{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border:1px solid #BEBEBE;
+	padding: 7px;
+	margin:0px;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+}
+.form-style-1 input[type=text]:focus,
+.form-style-1 input[type=date]:focus,
+.form-style-1 input[type=datetime]:focus,
+.form-style-1 input[type=number]:focus,
+.form-style-1 input[type=search]:focus,
+.form-style-1 input[type=time]:focus,
+.form-style-1 input[type=url]:focus,
+.form-style-1 input[type=email]:focus,
+.form-style-1 textarea:focus,
+.form-style-1 select:focus{
+	-moz-box-shadow: 0 0 8px #88D5E9;
+	-webkit-box-shadow: 0 0 8px #88D5E9;
+	box-shadow: 0 0 8px #88D5E9;
+	border: 1px solid #88D5E9;
+}
+.form-style-1 .field-divided{
+	width: 49%;
+}
+
+.form-style-1 .field-long{
+	width: 100%;
+}
+.form-style-1 .field-select{
+	width: 100%;
+}
+.form-style-1 .field-textarea{
+	height: 100px;
+}
+.form-style-1 input[type=submit], .form-style-1 input[type=button]{
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
+.form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+	background: #4691A4;
+	box-shadow:none;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+}
+.form-style-1 .required{
+	color:red;
+}
+.title-style{
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: 700;
+	font-size: 20px;
+	color: hsl(52, 0%, 98%);
+	}
+.title-quote{
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: 400;
+	color: hsl(52, 0%, 98%);
+	}
+
+</style>
+
+
+
+<div class="container py-5">
+	<div class="row d-flex justify-content-center align-items-center">
+	  <div class="col">
+		<div class="card my-4 shadow-3">
+		  <div class="row g-0">
+			<div class="col-xl-6 d-xl-block bg-image">
+			  <img src="https://mdbcdn.b-cdn.net/img/Others/extended-example/delivery.webp  " alt="Sample photo"
+				class="img-fluid"  style="height:400px; width:600px;"/>
+			  <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
+				<div class=" justify-content-center align-items-center h-100">
+				  <div class=" text-center" style="margin-bottom: 500px;">
+					<i class="fas fa-truck text-white fa-3x"></i>
+					<p class="text-white title-style">Lorem ipsum delivery</p>
+					<p class="text-white mb-0"></p>
+  
+					<figure class="text-center mb-0">
+					  <blockquote class="blockquote text-white">
+						<p class="pb-3">
+						  <i class="fas fa-quote-left fa-xs text-primary"
+							style="color: hsl(210, 100%, 50%) ;"></i>
+						  <span class="lead font-italic">Everything at your doorstep.</span>
+						  <i class="fas fa-quote-right fa-xs text-primary"
+							style="color: hsl(210, 100%, 50%) ;"></i>
+						</p>
+					  </blockquote>
+  
+					</figure>
+				  </div>
+				</div>
+			  </div>
+			</div>
+			<div class="col-xl-6">
+			  <div class="card-body p-md-5 text-black">
+				<h3 class="mb-4 text-uppercase">Delivery Info</h3>
+  
+					{%if product_in_cart%}
+					<form method="post">
+					{% csrf_token %}
+					<ul class="form-style-1">
+						<li>
+							<label>Email <span class="required">*</span></label>
+							{% render_field addressForm.Email class="field-long" placeholder="Email" %}
+
+						</li>
+						<li>
+							<label>Mobile <span class="required">*</span></label>
+							{% render_field addressForm.Mobile class="field-long" placeholder="Mobile" %}
+						</li>
+
+						<li>
+							<label>Shipment Address <span class="required">*</span></label>
+							{% render_field addressForm.Address id="field5" class="field-long field-textarea" placeholder="Building Number,city, pin" %}
+
+						</li>
+						<li>
+							
+								<input type="submit" class="btn btn-success btn-lg ms-2" value="Proceed To Pay" />
+							
+						</li>
+					</ul>
+					</form>
+					{%else%}
+					<br><br>
+					<h1 style="text-align:center; color:red;"> First Add Product In Cart </h1>
+					
+					{%endif%}
+  
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+  {% include "ecom/footer.html" %}
+{% endblock content %}
